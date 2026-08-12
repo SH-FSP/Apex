@@ -36,7 +36,7 @@ function Appointments() {
         </div>
 
         {list.length === 0 ? (
-          <div className="mt-6 hairline bg-[color:var(--surface)] p-6 text-center">
+          <div className="mt-6 panel p-6 text-center">
             <p className="text-[14px] text-body">No appointments in this view.</p>
             <LinkButton to="/book" className="mt-4" full>
               Book appointment
@@ -49,13 +49,13 @@ function Appointments() {
                 key={a.id}
                 to="/appointment/$id"
                 params={{ id: a.id }}
-                className="block hairline bg-[color:var(--surface)] p-4 hover:border-primary/50"
+                className="block panel p-4 hover:border-primary/40 transition-colors"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-[15px] font-semibold text-foreground">{a.serviceName}</p>
-                    <p className="mt-1 text-[13px] text-body flex items-center gap-1.5">
-                      <Icon.Calendar className="w-4 h-4 text-mute" />
+                    <p className="mt-1.5 text-[13px] text-body flex items-center gap-1.5">
+                      <Icon.Calendar className="w-4 h-4 text-primary" />
                       {a.date} · {a.time}
                     </p>
                     <p className="mt-1 text-[12px] text-mute flex items-center gap-1.5">

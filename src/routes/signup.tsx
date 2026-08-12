@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button, Field, LogoSlot } from "@/components/slife/ui";
 import { Icon } from "@/components/slife/icons";
+import { COMPANY } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/signup")({
   component: SignUp,
@@ -13,14 +14,15 @@ function SignUp() {
   return (
     <div className="min-h-screen w-full flex justify-center bg-background">
       <div className="relative w-full max-w-[440px] min-h-screen">
-        <div className="flex flex-col items-center pt-14 pb-8 px-6">
-          <LogoSlot size={72} />
+        <div className="flex flex-col items-center pt-12 pb-6 px-6">
+          <LogoSlot size={160} />
         </div>
         <div className="px-6">
           <p className="overline text-center">Create account</p>
           <h1 className="mt-2 text-center text-[28px] font-bold text-foreground">Join Apex.</h1>
           <p className="mt-3 text-center text-[14px] text-body max-w-[320px] mx-auto">
-            Book heating, cooling, electrical, and maintenance with one account.
+            Book professional HVACR, mechanical, and electrical service — residential through
+            government.
           </p>
 
           <form
@@ -38,7 +40,7 @@ function SignUp() {
             <label className="flex items-start gap-3 pt-2 cursor-pointer select-none">
               <span
                 onClick={() => setAgreed((v) => !v)}
-                className={`mt-0.5 w-5 h-5 border flex items-center justify-center shrink-0 ${
+                className={`mt-0.5 w-5 h-5 rounded-md border flex items-center justify-center shrink-0 ${
                   agreed ? "bg-primary border-primary" : "bg-transparent border-border"
                 }`}
               >
@@ -61,7 +63,9 @@ function SignUp() {
             </Button>
           </form>
 
-          <p className="mt-10 mb-8 text-center text-[13px] text-body">
+          <p className="mt-8 text-center text-[12px] text-mute px-2">{COMPANY.positioning}</p>
+
+          <p className="mt-6 mb-8 text-center text-[13px] text-body">
             Already have an account?{" "}
             <Link to="/login" className="text-primary font-semibold uppercase tracking-[0.06em] text-[12px]">
               Log in

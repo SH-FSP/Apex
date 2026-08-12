@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
+import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MeRouteImport } from './routes/me'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AppointmentIdRouteImport } from './routes/appointment.$id'
@@ -29,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppointmentsRoute = AppointmentsRouteImport.update({
   id: '/appointments',
   path: '/appointments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookRoute = BookRouteImport.update({
@@ -61,6 +68,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuoteRoute = QuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -80,12 +92,14 @@ const AppointmentIdRoute = AppointmentIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
   '/book': typeof BookRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/signup': typeof SignupRoute
   '/appointment/$id': typeof AppointmentIdRoute
@@ -93,12 +107,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
   '/book': typeof BookRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/signup': typeof SignupRoute
   '/appointment/$id': typeof AppointmentIdRoute
@@ -107,12 +123,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
   '/book': typeof BookRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/signup': typeof SignupRoute
   '/appointment/$id': typeof AppointmentIdRoute
@@ -122,12 +140,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/appointments'
+    | '/assistant'
     | '/book'
     | '/home'
     | '/login'
     | '/me'
     | '/notifications'
     | '/onboarding'
+    | '/quote'
     | '/services'
     | '/signup'
     | '/appointment/$id'
@@ -135,12 +155,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/appointments'
+    | '/assistant'
     | '/book'
     | '/home'
     | '/login'
     | '/me'
     | '/notifications'
     | '/onboarding'
+    | '/quote'
     | '/services'
     | '/signup'
     | '/appointment/$id'
@@ -148,12 +170,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/appointments'
+    | '/assistant'
     | '/book'
     | '/home'
     | '/login'
     | '/me'
     | '/notifications'
     | '/onboarding'
+    | '/quote'
     | '/services'
     | '/signup'
     | '/appointment/$id'
@@ -162,12 +186,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppointmentsRoute: typeof AppointmentsRoute
+  AssistantRoute: typeof AssistantRoute
   BookRoute: typeof BookRoute
   HomeRoute: typeof HomeRoute
   LoginRoute: typeof LoginRoute
   MeRoute: typeof MeRoute
   NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
+  QuoteRoute: typeof QuoteRoute
   ServicesRoute: typeof ServicesRoute
   SignupRoute: typeof SignupRoute
   AppointmentIdRoute: typeof AppointmentIdRoute
@@ -187,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/appointments'
       fullPath: '/appointments'
       preLoaderRoute: typeof AppointmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book': {
@@ -231,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quote': {
+      id: '/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -258,12 +298,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppointmentsRoute: AppointmentsRoute,
+  AssistantRoute: AssistantRoute,
   BookRoute: BookRoute,
   HomeRoute: HomeRoute,
   LoginRoute: LoginRoute,
   MeRoute: MeRoute,
   NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
+  QuoteRoute: QuoteRoute,
   ServicesRoute: ServicesRoute,
   SignupRoute: SignupRoute,
   AppointmentIdRoute: AppointmentIdRoute,

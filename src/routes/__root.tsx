@@ -22,7 +22,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground"
           >
             Return home
           </Link>
@@ -51,13 +51,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wider text-primary-foreground"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wider text-primary-foreground"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center border border-border bg-transparent px-5 py-3 text-xs font-semibold uppercase tracking-wider text-foreground"
+            className="inline-flex items-center justify-center rounded-xl border border-border bg-transparent px-5 py-3 text-xs font-semibold uppercase tracking-wider text-foreground"
           >
             Go home
           </a>
@@ -73,17 +73,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0A1220" },
-      { title: "Apex Climate Technologies" },
+      { title: "APEX CLIMATE TECHNOLOGIES" },
       {
         name: "description",
         content:
-          "Book HVACR service with Apex Climate Technologies — heating, ventilation, air conditioning, piping, electrical, and preventive maintenance.",
+          "APEX CLIMATE TECHNOLOGIES — HVACR mechanical & electrical services. Heating, ventilation, AC, process piping, electrical, boiler, repairs, installations, and preventive maintenance for residential, commercial, institutional, and government clients.",
       },
-      { name: "author", content: "Apex Climate Technologies" },
-      { property: "og:title", content: "Apex Climate Technologies" },
+      { name: "author", content: "APEX CLIMATE TECHNOLOGIES" },
+      { property: "og:title", content: "APEX CLIMATE TECHNOLOGIES" },
       {
         property: "og:description",
-        content: "Mechanical & electrical HVACR services. Book an appointment in minutes.",
+        content:
+          "Professional HVACR, mechanical, and electrical service. Book an appointment or request a quote.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -95,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap",
       },
     ],
   }),

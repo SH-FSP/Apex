@@ -5,13 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 1px;
-  --radius-lg: 2px;
-  --radius-xl: 2px;
-  --radius-2xl: 2px;
-  --radius-3xl: 2px;
-  --radius-4xl: 2px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+  --radius-3xl: 26px;
+  --radius-4xl: 32px;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,46 +39,46 @@
   --color-input: var(--surface);
   --color-ring: var(--primary);
 
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0px;
-  /* Apex Climate — professional blue + red */
-  --background: #0a1220;
-  --surface: #121c2e;
-  --elevated: #1a2740;
-  --foreground: #ffffff;
-  --body: #b8c4d8;
-  --muted-foreground: #b8c4d8;
-  --mute: #6e7d96;
-  --border: #2a3a55;
-  --primary: #1e5bb8;
+  --radius: 16px;
+  /* Apex Climate — cool navy + heat red */
+  --background: #070d18;
+  --surface: #101a2c;
+  --elevated: #17233a;
+  --foreground: #f4f7fb;
+  --body: #a8b6cc;
+  --muted-foreground: #a8b6cc;
+  --mute: #6b7c96;
+  --border: #24344f;
+  --primary: #2f6fdb;
   --primary-foreground: #ffffff;
-  --accent: #c8102e;
+  --accent: #e11d38;
   --accent-foreground: #ffffff;
-  --success: #3ddc84;
+  --success: #2ecf84;
   --destructive: #e5484d;
-  --verified: #4a9eff;
+  --verified: #5aa7ff;
 }
 
 .dark {
-  --background: #0a1220;
-  --surface: #121c2e;
-  --elevated: #1a2740;
-  --foreground: #ffffff;
-  --body: #b8c4d8;
-  --muted-foreground: #b8c4d8;
-  --mute: #6e7d96;
-  --border: #2a3a55;
-  --primary: #1e5bb8;
+  --background: #070d18;
+  --surface: #101a2c;
+  --elevated: #17233a;
+  --foreground: #f4f7fb;
+  --body: #a8b6cc;
+  --muted-foreground: #a8b6cc;
+  --mute: #6b7c96;
+  --border: #24344f;
+  --primary: #2f6fdb;
   --primary-foreground: #ffffff;
-  --accent: #c8102e;
+  --accent: #e11d38;
   --accent-foreground: #ffffff;
-  --success: #3ddc84;
+  --success: #2ecf84;
   --destructive: #e5484d;
-  --verified: #4a9eff;
+  --verified: #5aa7ff;
 }
 
 @layer base {
@@ -100,12 +100,13 @@
   h4,
   h5 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     color: var(--color-foreground);
+    font-weight: 650;
   }
 
   ::selection {
-    background: var(--color-primary);
+    background: color-mix(in oklab, var(--color-primary) 70%, transparent);
     color: var(--color-primary-foreground);
   }
 }
@@ -114,27 +115,40 @@
   font-family: var(--font-display);
   text-transform: uppercase;
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: var(--color-primary);
   font-weight: 600;
 }
 
 @utility hairline {
-  border-color: var(--color-border);
+  border-color: color-mix(in oklab, var(--color-border) 90%, white 10%);
   border-width: 1px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+
+@utility panel {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--color-elevated) 70%, transparent), var(--color-surface));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
 }
 
 @utility scrim-bottom {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(10, 18, 32, 0.4) 40%,
-    rgba(10, 18, 32, 0.95) 100%
+    rgba(7, 13, 24, 0.35) 35%,
+    rgba(7, 13, 24, 0.92) 100%
   );
 }
 
 @utility scrim-full {
-  background: linear-gradient(180deg, rgba(10, 18, 32, 0.4) 0%, rgba(10, 18, 32, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(7, 13, 24, 0.35) 0%, rgba(7, 13, 24, 0.8) 100%);
+}
+
+@utility soft-glow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
 @utility shimmer {
@@ -160,7 +174,7 @@
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -169,7 +183,7 @@
 }
 
 @utility fade-in-up {
-  animation: fade-in-up 250ms ease-out both;
+  animation: fade-in-up 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fade-in {
@@ -182,15 +196,20 @@
 }
 
 @utility fade-in {
-  animation: fade-in 400ms ease-out both;
+  animation: fade-in 420ms ease-out both;
+}
+
+@utility safe-bottom {
+  padding-bottom: max(0.65rem, env(safe-area-inset-bottom));
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
+  border-radius: 99px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;

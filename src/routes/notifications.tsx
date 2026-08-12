@@ -10,19 +10,25 @@ const ITEMS = [
   {
     id: "1",
     title: "Appointment reminder",
-    body: "AC service tomorrow at 10:00 AM — Marcus Hale assigned.",
+    body: "Air Conditioning service tomorrow at 10:00 AM — Marcus Hale assigned.",
     time: "2h ago",
   },
   {
     id: "2",
-    title: "Booking confirmed",
-    body: "Preventive maintenance on Aug 20 at 2:00 PM is confirmed.",
+    title: "Quote follow-up",
+    body: "Your commercial preventive-maintenance quote request is in review.",
     time: "Yesterday",
   },
   {
     id: "3",
+    title: "Government site visit",
+    body: "Boiler inspection at City Facilities Annex is scheduled for Aug 28.",
+    time: "2d ago",
+  },
+  {
+    id: "4",
     title: "Seasonal tip",
-    body: "Schedule a cooling tune-up before peak summer demand.",
+    body: "Book cooling and ventilation checks before peak demand.",
     time: "3d ago",
   },
 ];
@@ -34,7 +40,7 @@ function Notifications() {
       <div className="px-5 py-5 space-y-3 pb-8 fade-in-up">
         {ITEMS.map((n) => (
           <div key={n.id} className="hairline bg-[color:var(--surface)] p-4 flex gap-3">
-            <div className="w-9 h-9 bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
               <Icon.Bell className="w-4 h-4 text-primary" />
             </div>
             <div className="min-w-0">

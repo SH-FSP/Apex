@@ -79,7 +79,7 @@ function BookAppointment() {
       <MobileShell tabBar>
         <TopBar title="Confirmed" />
         <div className="px-6 py-10 flex flex-col items-center text-center fade-in">
-          <div className="w-16 h-16 bg-primary flex items-center justify-center mb-6">
+          <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mb-6">
             <Icon.Check className="w-8 h-8 text-primary-foreground" strokeWidth={2.5} />
           </div>
           <p className="overline">You're booked</p>
@@ -124,15 +124,17 @@ function BookAppointment() {
           {[0, 1, 2, 3].map((n) => (
             <span
               key={n}
-              className={`h-[3px] flex-1 transition-colors ${n <= step ? "bg-primary" : "bg-border"}`}
+              className={`h-1 flex-1 rounded-full transition-colors ${n <= step ? "bg-primary" : "bg-border"}`}
             />
           ))}
         </div>
 
         {step === 0 && (
           <div className="space-y-3">
-            <h2 className="text-[20px] font-bold text-foreground">What do you need?</h2>
-            <p className="text-[14px] text-body mb-2">Select a service to continue.</p>
+            <h2 className="text-[22px] font-bold text-foreground tracking-tight">What do you need?</h2>
+            <p className="text-[14px] text-body mb-1">
+              Select a service to continue your booking.
+            </p>
             {SERVICES.map((s) => (
               <button
                 key={s.id}
@@ -141,17 +143,15 @@ function BookAppointment() {
                   setServiceId(s.id);
                   setStep(1);
                 }}
-                className={`w-full text-left flex gap-3 hairline p-3 transition-colors ${
-                  serviceId === s.id ? "border-primary bg-primary/10" : "bg-[color:var(--surface)]"
+                className={`w-full text-left flex gap-3 panel p-3 transition-all hover:border-primary/40 ${
+                  serviceId === s.id ? "border-primary ring-2 ring-primary/20" : ""
                 }`}
               >
-                <img src={s.image} alt="" className="w-16 h-16 object-cover shrink-0" />
-                <div className="min-w-0 flex-1">
-                  <p className="text-[15px] font-semibold text-foreground">{s.name}</p>
-                  <p className="text-[12px] text-mute mt-0.5">{s.short}</p>
-                  <p className="text-[11px] text-primary mt-1 font-semibold uppercase tracking-[0.06em]">
-                    {s.fromPrice} · {s.duration}
-                  </p>
+                <img src={s.image} alt="" className="w-[4.25rem] h-[4.25rem] rounded-xl object-cover shrink-0" />
+                <div className="min-w-0 flex-1 py-0.5">
+                  <p className="text-[11px] font-semibold text-primary tracking-wide">{s.category}</p>
+                  <p className="text-[15px] font-semibold text-foreground mt-0.5">{s.name}</p>
+                  <p className="text-[12px] text-mute mt-0.5 line-clamp-1">{s.short}</p>
                 </div>
                 <Icon.Chevron className="w-5 h-5 text-mute self-center" />
               </button>
@@ -162,15 +162,13 @@ function BookAppointment() {
         {step === 1 && (
           <div className="space-y-5">
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Job details</h2>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Job details</h2>
               <p className="text-[14px] text-body mt-1">
-                Service: <span className="text-foreground font-medium">{service?.name}</span>
+                Service: <span className="text-foreground font-semibold">{service?.name}</span>
               </p>
             </div>
             <div>
-              <p className="mb-2 text-[11px] uppercase tracking-[0.08em] font-semibold text-mute">
-                Property type
-              </p>
+              <p className="mb-2.5 text-[12px] font-semibold text-mute">Property type</p>
               <div className="flex flex-wrap gap-2">
                 {PROPERTY_TYPES.map((t) => (
                   <Chip
@@ -203,45 +201,41 @@ function BookAppointment() {
         {step === 2 && (
           <div className="space-y-5">
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Pick a time</h2>
-              <p className="text-[14px] text-body mt-1">Technicians available weekdays & weekends.</p>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Pick a time</h2>
+              <p className="text-[14px] text-body mt-1">Available weekdays and weekends.</p>
             </div>
             <div>
-              <p className="mb-2 text-[11px] uppercase tracking-[0.08em] font-semibold text-mute">
-                Date
-              </p>
+              <p className="mb-2.5 text-[12px] font-semibold text-mute">Date</p>
               <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
                 {dates.map((d, idx) => (
                   <button
                     key={d.key}
                     type="button"
                     onClick={() => setDateIdx(idx)}
-                    className={`shrink-0 w-14 h-16 border flex flex-col items-center justify-center ${
+                    className={`shrink-0 w-[3.6rem] h-[4.25rem] rounded-2xl border flex flex-col items-center justify-center transition ${
                       dateIdx === idx
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border bg-[color:var(--surface)] text-foreground"
+                        ? "border-primary bg-primary text-primary-foreground shadow-[0_8px_20px_rgba(47,111,219,0.3)]"
+                        : "border-border bg-[color:var(--surface)] text-foreground hover:border-primary/40"
                     }`}
                   >
                     <span className="text-[10px] uppercase tracking-wider opacity-80">{d.label}</span>
-                    <span className="text-[18px] font-bold">{d.day}</span>
+                    <span className="text-[18px] font-bold font-display">{d.day}</span>
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <p className="mb-2 text-[11px] uppercase tracking-[0.08em] font-semibold text-mute">
-                Time slot
-              </p>
+              <p className="mb-2.5 text-[12px] font-semibold text-mute">Time slot</p>
               <div className="grid grid-cols-3 gap-2">
                 {TIME_SLOTS.map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setTime(t)}
-                    className={`h-10 text-[12px] font-semibold border ${
+                    className={`h-11 rounded-xl text-[12px] font-semibold border transition ${
                       time === t
                         ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border bg-[color:var(--surface)] text-foreground"
+                        : "border-border bg-[color:var(--surface)] text-foreground hover:border-primary/40"
                     }`}
                   >
                     {t}
@@ -258,18 +252,17 @@ function BookAppointment() {
         {step === 3 && service && (
           <div className="space-y-5">
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Confirm</h2>
-              <p className="text-[14px] text-body mt-1">Double-check details before submitting.</p>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Confirm</h2>
+              <p className="text-[14px] text-body mt-1">Review details before submitting.</p>
             </div>
-            <div className="hairline bg-[color:var(--surface)] overflow-hidden">
-              <img src={service.image} alt="" className="w-full h-36 object-cover" />
-              <div className="p-4 space-y-3">
+            <div className="hairline soft-glow">
+              <img src={service.image} alt="" className="w-full h-40 object-cover" />
+              <div className="p-4 space-y-3.5">
                 <Row label="Service" value={service.name} />
                 <Row label="When" value={`${dates[dateIdx].full} · ${time}`} />
                 <Row label="Property" value={propertyType} />
                 <Row label="Address" value={address} />
                 {notes ? <Row label="Notes" value={notes} /> : null}
-                <Row label="Estimate" value={service.fromPrice} />
               </div>
             </div>
             <Button full variant="accent" onClick={confirm}>
