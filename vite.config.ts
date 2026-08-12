@@ -6,12 +6,22 @@ const PRODUCTION_BASE = "/apex/";
 export default defineConfig({
   cloudflare: false,
   vite: {
+    // Subpath must match Nginx and preview.html; use this for dev/preview/build so PM2 `vite preview` matches assets.
     base: PRODUCTION_BASE,
+    // Allow the domain to access the preview server (if needed for SSR testing)
     server: {
-      allowedHosts: ["demo.sourapps.com", "localhost", "127.0.0.1"],
+      allowedHosts: [
+        "demo.sourapps.com",
+        "localhost",
+        "127.0.0.1",
+      ],
     },
     preview: {
-      allowedHosts: ["demo.sourapps.com", "localhost", "127.0.0.1"],
+      allowedHosts: [
+        "demo.sourapps.com",
+        "localhost",
+        "127.0.0.1",
+      ],
     },
   },
 });
